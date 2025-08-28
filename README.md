@@ -1,16 +1,7 @@
-حتما! اینجا یک توضیح جامع و آماده برای **Git README** درباره معماری پروژه `EmployeeAdminPortalLST` است که می‌توانی مستقیم استفاده کنی:
+EmployeeAdminPortalLST
+یک پروژه ASP.NET Core Web API برای مدیریت کارمندان با معماری Clean / Layered و سرویس‌های Generic.
 
-```markdown
-# EmployeeAdminPortalLST
-
-یک پروژه **ASP.NET Core Web API** برای مدیریت کارمندان با معماری **Clean / Layered** و سرویس‌های **Generic**.
-
----
-
-## 🌐 ساختار پروژه
-
-```
-
+🌐 ساختار پروژه
 EmployeeAdminPortalLST/
 ├── Controllers/                    # کنترلرهای API
 │   ├── EmployeeController.cs       # مدیریت عملیات کارمندان
@@ -30,80 +21,100 @@ EmployeeAdminPortalLST/
 ├── Services/                       # سرویس‌های کسب‌وکار
 │   └── GenericService.cs           # Generic CRUD Service
 ├── Migrations/                     # EF Core Migrations
-├── Program.cs                       # نقطه ورود برنامه
-├── appsettings.json                 # تنظیمات برنامه
+├── Program.cs                      # نقطه ورود برنامه
+├── appsettings.json                # تنظیمات برنامه
 └── EmployeeAdminPortalLST.csproj   # فایل پروژه
 
-````
 
----
+🔁 جریان داده‌ها (Flow)
+@startuml
+actor Client as "کاربر / درخواست HTTP"
 
-## 🔁 جریان داده‌ها (Flow)
+rectangle "EmployeeAdminPortalLST API" {
+    
+    rectangle "Controllers" {
+        Controller "EmployeeController" {
+            note right
+                - دریافت درخواست HTTP (GET, POST, PUT, DELETE)
+                - اعتبارسنجی اولیه ModelState
+                - فراخوانی GenericService
+            end note
+        }
+    }
 
-1. **Client / Browser / Postman**  
-   - ارسال درخواست HTTP (GET, POST, PUT, DELETE)  
+    rectangle "Services" {
+        GenericService "GenericService<T, TKey>" {
+            note right
+                - عملیات CRUD عمومی برای هر Entity
+                - Paging / Sorting / Filtering
+                - DeleteRangeAsync
+            end note
+        }
+    }
 
-2. **EmployeeController**  
-   - دریافت درخواست  
-   - Validation اولیه (ModelState)  
-   - فراخوانی Generic Service (`IGenericService<Employee, TKey>`)  
+    rectangle "Data" {
+        DbContext "ApplicationDbContext" {
+            note right
+                - دسترسی به DbSet<T>
+                - اجرای Query و SaveChangesAsync
+            end note
+        }
+    }
 
-3. **GenericService<T, TKey>**  
-   - عملیات CRUD عمومی برای هر Entity  
-   - Paging / Sorting / Filtering  
+    rectangle "Database" {
+        note right
+            - ذخیره و بازیابی داده‌ها
+        end note
+    }
 
-4. **ApplicationDbContext (EF Core)**  
-   - دسترسی مستقیم به DbSet  
-   - اجرای Query و SaveChangesAsync  
+}
 
-5. **Database SQL Server**  
-   - ذخیره یا خواندن داده‌ها  
+' ارتباطات
+Client --> Controller : ارسال HTTP Request
+Controller --> GenericService : فراخوانی سرویس (IGenericService<Employee, TKey>)
+GenericService --> DbContext : عملیات CRUD
+DbContext --> Database : ذخیره / خواندن داده‌ها
+Database --> DbContext : پاسخ داده‌ها
+DbContext --> GenericService : داده‌های پردازش شده
+GenericService --> Controller : پاسخ سرویس
+Controller --> Client : ارسال HTTP Response
 
-6. **Response به Client**  
-   - Controller پاسخ را باز می‌گرداند  
+@enduml
 
----
 
-## 🔹 ویژگی‌ها
 
-- **Generic Service**: قابلیت استفاده مجدد برای هر Entity (Employee، User، Product …)  
-- **DTOها**: جدا کردن مدل دیتابیس و مدل انتقال داده  
-- **Paging / Sorting / Filtering**: با `PageResult<T>` و `EmployeeFilterRequestModel`  
-- **Bulk Delete**: حذف دسته جمعی با `BulkDeleteDto`  
-- **Partial Update**: Patch کردن جزیی کارمندان با `JsonPatchDocument`  
 
----
+🔹 ویژگی‌ها
 
-## 💡 آینده‌نگری
+Generic Service: قابلیت استفاده مجدد برای هر Entity (Employee، User، Product ...)
+DTOها: جداسازی مدل‌های دیتابیس و مدل‌های انتقال داده
+Paging / Sorting / Filtering: با استفاده از PageResult<T> و EmployeeFilterRequestModel
+Bulk Delete: حذف دسته‌جمعی با BulkDeleteDto
+Partial Update: به‌روزرسانی جزیی کارمندان با JsonPatchDocument
 
-- اضافه کردن پروژه **Console Client** برای تست مستقیم سرویس‌ها  
-- واحد تست (Unit Test) با Mock کردن `IGenericService`  
-- قابلیت گسترش سرویس‌ها برای Entityهای اختصاصی  
 
----
+💡 آینده‌نگری
 
-## 📌 نحوه اجرا
+افزودن پروژه Console Client برای تست مستقیم سرویس‌ها
+پیاده‌سازی واحد تست (Unit Test) با Mock کردن IGenericService
+قابلیت گسترش سرویس‌ها برای Entityهای اختصاصی
 
-1. Clone پروژه  
-2. تنظیم **ConnectionString** در `appsettings.json`  
-3. اجرای Migration:  
-```bash
+
+📌 نحوه اجرا
+
+کلون کردن پروژه:
+git clone <repository-url>
+
+
+تنظیم ConnectionString در فایل appsettings.json
+
+اجرای Migration:
 dotnet ef database update
-````
 
-4. اجرای پروژه:
 
-```bash
+اجرای پروژه:
 dotnet run
-```
 
-5. تست API از طریق **Swagger**: `https://localhost:{port}/swagger`
 
----
+تست API از طریق Swagger:https://localhost:{port}/swagger
 
-```
-
-می‌توانم همین README را یک **نسخه تصویری با دیاگرام بلوکی جریان داده‌ها** هم بکشم تا در GitHub نمایش داده شود و خیلی واضح معماری پروژه را نشان دهد.  
-
-میخوای این نسخه تصویری هم آماده کنم؟
-```

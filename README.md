@@ -27,7 +27,8 @@ EmployeeAdminPortalLST/
 
 
 🔁 جریان داده‌ها
-(Flow)@startuml
+(Flow)@startuml<img width="1719" height="367" alt="diagram" src="https://github.com/user-attachments/assets/e06fdc7b-f743-4d32-b694-350ac39a2540" />
+
 
 🔹 ویژگی‌ها
 

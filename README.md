@@ -26,8 +26,7 @@ EmployeeAdminPortalLST/
 └── EmployeeAdminPortalLST.csproj   # فایل پروژه
 
 
-🔁 جریان داده‌ها (Flow)
-@startuml
+🔁 جریان داده‌ها (Flow)@startuml
 actor Client as "کاربر / درخواست HTTP"
 
 rectangle "EmployeeAdminPortalLST API" {
@@ -80,9 +79,6 @@ GenericService --> Controller : پاسخ سرویس
 Controller --> Client : ارسال HTTP Response
 
 @enduml
-
-
-
 
 🔹 ویژگی‌ها
 

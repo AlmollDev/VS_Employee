@@ -27,12 +27,13 @@ EmployeeAdminPortalLST/
 
 
 🔁 جریان داده‌ها (Flow)@startuml
-actor Client as "کاربر / درخواست HTTP"
+@startuml
+actor Client as "کاربر / مرورگر / Postman"
 
 rectangle "EmployeeAdminPortalLST API" {
     
     rectangle "Controllers" {
-        Controller "EmployeeController" {
+        rectangle "EmployeeController" {
             note right
                 - دریافت درخواست HTTP (GET, POST, PUT, DELETE)
                 - اعتبارسنجی اولیه ModelState
@@ -42,9 +43,9 @@ rectangle "EmployeeAdminPortalLST API" {
     }
 
     rectangle "Services" {
-        GenericService "GenericService<T, TKey>" {
+        rectangle "GenericService<T, TKey>" {
             note right
-                - عملیات CRUD عمومی برای هر Entity
+                - عملیات CRUD عمومی
                 - Paging / Sorting / Filtering
                 - DeleteRangeAsync
             end note
@@ -52,7 +53,7 @@ rectangle "EmployeeAdminPortalLST API" {
     }
 
     rectangle "Data" {
-        DbContext "ApplicationDbContext" {
+        rectangle "ApplicationDbContext" {
             note right
                 - دسترسی به DbSet<T>
                 - اجرای Query و SaveChangesAsync
@@ -68,15 +69,15 @@ rectangle "EmployeeAdminPortalLST API" {
 
 }
 
-' ارتباطات
-Client --> Controller : ارسال HTTP Request
-Controller --> GenericService : فراخوانی سرویس (IGenericService<Employee, TKey>)
-GenericService --> DbContext : عملیات CRUD
-DbContext --> Database : ذخیره / خواندن داده‌ها
-Database --> DbContext : پاسخ داده‌ها
-DbContext --> GenericService : داده‌های پردازش شده
-GenericService --> Controller : پاسخ سرویس
-Controller --> Client : ارسال HTTP Response
+'ارتباطات بین لایه‌ها
+Client --> "EmployeeController" : ارسال HTTP Request
+"EmployeeController" --> "GenericService<T, TKey>" : فراخوانی سرویس
+"GenericService<T, TKey>" --> "ApplicationDbContext" : عملیات CRUD
+"ApplicationDbContext" --> Database : ذخیره / خواندن داده‌ها
+Database --> "ApplicationDbContext" : پاسخ داده‌ها
+"ApplicationDbContext" --> "GenericService<T, TKey>" : داده‌های پردازش شده
+"GenericService<T, TKey>" --> "EmployeeController" : پاسخ سرویس
+"EmployeeController" --> Client : ارسال HTTP Response
 
 @enduml
 

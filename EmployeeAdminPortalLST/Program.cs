@@ -17,8 +17,9 @@ Services.AddSwaggerGen();
 //    builder.Configuration.GetSection("DefaultSetting"));
 //Services.AddSingleton<DbContextId>(s => s.GetRequiredKeyedService<IOptions<DbContext>>().Value);
 Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-var app = builder.Build();
 builder.Services.AddScoped(typeof(IGenericService<,>), typeof(GenericService<,>));
+    
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

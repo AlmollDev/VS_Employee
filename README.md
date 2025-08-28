@@ -80,17 +80,53 @@ EmployeeAdminPortalLST/
 ## 📊 دیاگرام‌ها
 
 ### 1️⃣ دیاگرام معماری فولدرها و لایه‌ها
-<img width="1206" height="478" alt="dLHjQzim4Fukq7yusYyRDFJBEjPIGcFPxWQ1PNMwVfQTcoEYIAwiT0iZ_tsINvBOSsWf1c7TFNVtt9lkIikDtQmb9ULAg88RleQKPwlSw8rQC2srWVDVL_uxXXZCB5UvHFXB2K3GjRYzPLfPewL4Cnx3UH24KHmC0XCqBo93Zs9Vei_iUX0LfjuX_h4U5yVnDViqZEEMfxp46iPO" src="https://github.com/user-attachments/assets/5b6981ff-26ed-464e-820c-68bd74d2561c" />
+
+
+<img width="1206" height="478" alt="dLHjQzim4Fukq7yusYyRDFJBEjPIGcFPxWQ1PNMwVfQTcoEYIAwiT0iZ_tsINvBOSsWf1c7TFNVtt9lkIikDtQmb9ULAg88RleQKPwlSw8rQC2srWVDVL_uxXXZCB5UvHFXB2K3GjRYzPLfPewL4Cnx3UH24KHmC0XCqBo93Zs9Vei_iUX0LfjuX_h4U5yVnDViqZEEMfxp46iPO" src="https://github.com/user-attachments/assets/b7b5e764-47f9-4d3b-a96c-c7fd38d5143e" />
+
+
+
+
+
+
+
+
+
 
 ### 2️⃣ دیاگرام جریان درخواست بین کنسول و Web API
-<img width="1719" height="367" alt="diagram" src="https://github.com/user-attachments/assets/a3cc8fc8-99b2-448e-901f-ee9d68a0c36c" />
+
+
+
+
+
+
+
+
+<img width="1719" height="367" alt="diagram" src="https://github.com/user-attachments/assets/c404ed7c-3be9-49a5-9bcf-3e9f55094843" />
+
+
+
+
+
+
+
+
+
+
+
 
 
 ### 3️⃣ دیاگرام داخلی Console App
 
-<img width="631" height="594" alt="bPF1JiCm38RlaV8ELhd0OIV40McQjfLEup1f0Y7ENcfAj2mfIJen4EzEagsYtPWGfpRsx-RpRtViF5hVR1HdRYrrZHOtO4bur9KY-EGCO8fYNLdJw38tojZXC5UIj1-Du68sA_BfzQ-YHx9RAIYgyfjyKjmcbR4bsQI0bGebd7rnnXaA7o9FZcmy_ToVvKOx4rucTQsaG2-DplPK" src="https://github.com/user-attachments/assets/f8f66bbf-d54c-4599-9a0b-83bd09abb005" />
 
----
+
+
+
+<img width="631" height="594" alt="bPF1JiCm38RlaV8ELhd0OIV40McQjfLEup1f0Y7ENcfAj2mfIJen4EzEagsYtPWGfpRsx-RpRtViF5hVR1HdRYrrZHOtO4bur9KY-EGCO8fYNLdJw38tojZXC5UIj1-Du68sA_BfzQ-YHx9RAIYgyfjyKjmcbR4bsQI0bGebd7rnnXaA7o9FZcmy_ToVvKOx4rucTQsaG2-DplPK" src="https://github.com/user-attachments/assets/a4b42b98-9f3d-4420-a20e-f7eb047f0b79" />
+
+
+
+
 
 
 
@@ -99,7 +135,19 @@ EmployeeAdminPortalLST/
 
 full diagram::
 
-<img width="3713" height="865" alt="full diagram" src="https://github.com/user-attachments/assets/c4f6bef1-2ee0-406c-86d4-ee42ad776291" />
+
+
+
+
+
+
+<img width="3713" height="865" alt="full diagram" src="https://github.com/user-attachments/assets/8f9bfc2e-e816-41d3-95f2-7db3e2802dff" />
+
+
+
+
+
+
 
 
 ## 💡 آینده‌نگری

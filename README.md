@@ -26,60 +26,8 @@ EmployeeAdminPortalLST/
 └── EmployeeAdminPortalLST.csproj   # فایل پروژه
 
 
-🔁 جریان داده‌ها (Flow)@startuml
-@startuml
-actor Client as "کاربر / مرورگر / Postman"
-
-rectangle "EmployeeAdminPortalLST API" {
-    
-    rectangle "Controllers" {
-        rectangle "EmployeeController" {
-            note right
-                - دریافت درخواست HTTP (GET, POST, PUT, DELETE)
-                - اعتبارسنجی اولیه ModelState
-                - فراخوانی GenericService
-            end note
-        }
-    }
-
-    rectangle "Services" {
-        rectangle "GenericService<T, TKey>" {
-            note right
-                - عملیات CRUD عمومی
-                - Paging / Sorting / Filtering
-                - DeleteRangeAsync
-            end note
-        }
-    }
-
-    rectangle "Data" {
-        rectangle "ApplicationDbContext" {
-            note right
-                - دسترسی به DbSet<T>
-                - اجرای Query و SaveChangesAsync
-            end note
-        }
-    }
-
-    rectangle "Database" {
-        note right
-            - ذخیره و بازیابی داده‌ها
-        end note
-    }
-
-}
-
-'ارتباطات بین لایه‌ها
-Client --> "EmployeeController" : ارسال HTTP Request
-"EmployeeController" --> "GenericService<T, TKey>" : فراخوانی سرویس
-"GenericService<T, TKey>" --> "ApplicationDbContext" : عملیات CRUD
-"ApplicationDbContext" --> Database : ذخیره / خواندن داده‌ها
-Database --> "ApplicationDbContext" : پاسخ داده‌ها
-"ApplicationDbContext" --> "GenericService<T, TKey>" : داده‌های پردازش شده
-"GenericService<T, TKey>" --> "EmployeeController" : پاسخ سرویس
-"EmployeeController" --> Client : ارسال HTTP Response
-
-@enduml
+🔁 جریان داده‌ها
+(Flow)@startuml
 
 🔹 ویژگی‌ها
 
